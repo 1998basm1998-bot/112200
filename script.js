@@ -1,7 +1,7 @@
-// مصفوفة لتخزين المعاملات
+/* script.js */
+
 let transactions = JSON.parse(localStorage.getItem('carTransactions')) || [];
 
-// دالة لتبديل التبويبات
 function openTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -14,13 +14,11 @@ function openTab(tabId) {
     }
 }
 
-// دالة لفتح نافذة الاستمارة
 function openFormModal(transactionId = null) {
     const modal = document.getElementById('formModal');
     modal.style.display = 'block';
     
     if (transactionId !== null) {
-        // تعبئة البيانات إذا كانت معاينة وتعديل
         const txn = transactions.find(t => t.id === transactionId);
         if(txn) {
             document.getElementById('transactionId').value = txn.id;
@@ -50,19 +48,16 @@ function openFormModal(transactionId = null) {
             document.getElementById('contractTime').value = txn.contractTime;
         }
     } else {
-        // تفريغ الحقول إذا كانت استمارة جديدة
         document.getElementById('transactionId').value = '';
         const inputs = document.querySelectorAll('.contract-paper input');
         inputs.forEach(input => input.value = '');
     }
 }
 
-// إغلاق النافذة
 function closeFormModal() {
     document.getElementById('formModal').style.display = 'none';
 }
 
-// حفظ الاستمارة
 function saveTransaction() {
     const idField = document.getElementById('transactionId').value;
     const sellerName = document.getElementById('sellerName').value;
@@ -101,23 +96,18 @@ function saveTransaction() {
     };
 
     if (idField) {
-        // تحديث
         const index = transactions.findIndex(t => t.id === parseInt(idField));
         transactions[index] = newTxn;
     } else {
-        // إضافة جديدة
         transactions.push(newTxn);
     }
 
     localStorage.setItem('carTransactions', JSON.stringify(transactions));
     alert('تم الحفظ بنجاح!');
     closeFormModal();
-    
-    // الانتقال للتبويبة الثانية لتحديث القائمة
     openTab('list-tab');
 }
 
-// عرض المعاملات
 function renderTransactions(filteredList = transactions) {
     const container = document.getElementById('transactionsList');
     container.innerHTML = '';
@@ -137,6 +127,7 @@ function renderTransactions(filteredList = transactions) {
             <p><strong>التاريخ:</strong> ${txn.contractDate || 'غير مسجل'}</p>
             <div class="card-actions">
                 <button class="3d-btn" onclick="openFormModal(${txn.id})"><i class="fa-solid fa-pen-to-square"></i> معاينة وتعديل</button>
+                <button class="3d-btn btn-danger" onclick="deleteTransaction(${txn.id})"><i class="fa-solid fa-trash"></i> حذف</button>
                 <button class="3d-btn" onclick="printTransaction(${txn.id})"><i class="fa-solid fa-print"></i> طباعة</button>
             </div>
         `;
@@ -144,7 +135,6 @@ function renderTransactions(filteredList = transactions) {
     });
 }
 
-// البحث عن المعاملات
 function searchTransactions() {
     const query = document.getElementById('searchInput').value.toLowerCase();
     const filtered = transactions.filter(txn => 
@@ -154,13 +144,19 @@ function searchTransactions() {
     renderTransactions(filtered);
 }
 
-// طباعة معاملة محددة من القائمة
+function deleteTransaction(id) {
+    if(confirm('هل أنت متأكد من حذف هذه المعاملة؟')) {
+        transactions = transactions.filter(t => t.id !== id);
+        localStorage.setItem('carTransactions', JSON.stringify(transactions));
+        renderTransactions();
+    }
+}
+
 function printTransaction(id) {
     openFormModal(id);
     setTimeout(() => {
         window.print();
-    }, 500); // تأخير بسيط لضمان تحميل البيانات في النافذة قبل الطباعة
+    }, 500);
 }
 
-// تهيئة العرض الأولي
 renderTransactions();
