@@ -1,4 +1,5 @@
-/* إعدادات عامة */
+/* style.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +17,6 @@ body {
     color: #333;
 }
 
-/* خلفية تفاعلية */
 .background-shapes {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -33,7 +33,6 @@ body {
 .background-shapes::before { width: 400px; height: 400px; top: -100px; right: -100px; }
 .background-shapes::after { width: 300px; height: 300px; bottom: -50px; left: -50px; }
 
-/* الحاوية الزجاجية (Glassmorphism) */
 .glass-container {
     width: 100%;
     max-width: 1200px;
@@ -62,7 +61,6 @@ header {
     gap: 15px;
 }
 
-/* أزرار 3D */
 .3d-btn, .tab-btn {
     padding: 10px 25px;
     border: none;
@@ -73,7 +71,6 @@ header {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
-    /* تأثير 3D باستخدام الظلال (Neumorphism) */
     box-shadow: 5px 5px 10px #b8bcc2, -5px -5px 10px #ffffff;
 }
 
@@ -85,20 +82,19 @@ header {
 .btn-primary { background: #4facfe; color: white; box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4); }
 .btn-success { background: #43e97b; color: white; box-shadow: 0 4px 15px rgba(67, 233, 123, 0.4); }
 .btn-info { background: #fa709a; color: white; box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4); }
+.btn-danger { background: #ff4d4d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4); }
 
-.btn-primary:active, .btn-success:active, .btn-info:active {
+.btn-primary:active, .btn-success:active, .btn-info:active, .btn-danger:active {
     transform: translateY(2px);
     box-shadow: none;
 }
 
-/* محتوى التبويبات */
 .tab-content { display: none; padding: 30px; }
 .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .center-content { text-align: center; margin-top: 50px; }
 
-/* حقول الإدخال 3D والبحث */
 .3d-input-group {
     position: relative;
     max-width: 500px;
@@ -118,7 +114,6 @@ header {
     font-size: 16px;
 }
 
-/* شبكة المعاملات المحفوظة */
 .transactions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
 .transaction-card {
     background: rgba(255, 255, 255, 0.8);
@@ -128,11 +123,8 @@ header {
     text-align: right;
 }
 .transaction-card h3 { color: #1e3c72; margin-bottom: 10px; }
-.transaction-card .card-actions { margin-top: 15px; display: flex; gap: 10px; }
+.transaction-card .card-actions { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
 
-/* ========================================= */
-/* تصميم الاستمارة (الورقة) لتبدو كالصورة */
-/* ========================================= */
 .modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 1000;
@@ -145,7 +137,6 @@ header {
 .close-btn { position: absolute; left: 20px; top: 20px; font-size: 30px; cursor: pointer; color: red; }
 .form-actions { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
 
-/* الورقة نفسها */
 .contract-paper {
     background: #fff;
     border: 2px solid #ccc;
@@ -164,8 +155,10 @@ header {
 .contract-header {
     display: flex; justify-content: space-between; align-items: center;
     background: linear-gradient(to bottom, #2b2b2b, #000);
-    color: #ffd700; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;
+    color: #ffd700; padding: 15px; border-radius: 10px; margin-bottom: 20px;
 }
+.header-side { flex: 1; }
+.header-center { flex: 2; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .header-center h2 { color: #ffd700; font-size: 30px; text-shadow: 1px 1px 2px red; margin:0;}
 .header-center h3 { color: red; margin:0;}
 .header-center .subtitle { background: #ffd700; color: #000; border-radius: 15px; padding: 2px 10px; display: inline-block; font-weight: bold;}
@@ -197,11 +190,11 @@ header {
 .red-text { color: red; font-weight: bold; text-align: center; border-bottom: 1px solid red; padding-bottom: 10px;}
 .signatures-row { display: flex; justify-content: space-between; margin-top: 30px; font-weight: bold; padding: 0 50px; }
 
-/* إعدادات الطباعة (إخفاء كل شيء باستثناء الاستمارة) */
 @media print {
-    body { background: none; padding: 0; }
+    @page { size: A4 portrait; margin: 0.5cm; }
+    body { background: none; padding: 0; margin: 0; }
     .no-print, .background-shapes, header { display: none !important; }
-    .modal { position: static; display: block; background: transparent; padding: 0; }
-    .glass-form { box-shadow: none; max-width: 100%; padding: 0; }
-    .contract-paper { border: none; }
+    .modal { position: absolute; top: 0; left: 0; display: block; background: transparent; padding: 0; margin: 0; width: 100%; height: auto; }
+    .glass-form { box-shadow: none; max-width: 100%; padding: 0; margin: 0; border: none; }
+    .contract-paper { border: none; padding: 10px; margin: 0; height: 100%; page-break-inside: avoid; transform: scale(0.96); transform-origin: top center; }
 }
