@@ -191,10 +191,78 @@ header {
 .signatures-row { display: flex; justify-content: space-between; margin-top: 30px; font-weight: bold; padding: 0 50px; }
 
 @media print {
-    @page { size: A4 portrait; margin: 0.5cm; }
-    body { background: none; padding: 0; margin: 0; }
-    .no-print, .background-shapes, header { display: none !important; }
-    .modal { position: absolute; top: 0; left: 0; display: block; background: transparent; padding: 0; margin: 0; width: 100%; height: auto; }
-    .glass-form { box-shadow: none; max-width: 100%; padding: 0; margin: 0; border: none; }
-    .contract-paper { border: none; padding: 10px; margin: 0; height: 100%; page-break-inside: avoid; transform: scale(0.96); transform-origin: top center; }
+    @page { 
+        size: A4; 
+        margin: 0; 
+    }
+    body { 
+        margin: 0; 
+        padding: 0;
+        background: #fff;
+    }
+    .no-print, .background-shapes, header { 
+        display: none !important; 
+    }
+    .modal { 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        display: block; 
+        background: #fff; 
+        padding: 0; 
+        margin: 0; 
+        width: 100%; 
+        height: 100%;
+    }
+    .glass-form { 
+        box-shadow: none; 
+        max-width: 100%; 
+        padding: 15px; 
+        margin: 0; 
+        border: none; 
+        width: 100%;
+    }
+    .contract-paper { 
+        border: none; 
+        padding: 0; 
+        margin: 0; 
+        width: 100%; 
+        height: 100%; 
+        max-height: 297mm; 
+        overflow: hidden; 
+        page-break-inside: avoid;
+        font-size: 14px;
+    }
+    .contract-paper input {
+        font-size: 14px;
+    }
+    .contract-header {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    .parties-section {
+        margin-bottom: 10px;
+    }
+    .party-box {
+        padding: 10px;
+    }
+    .input-row {
+        margin-bottom: 5px;
+    }
+    .divider-title {
+        margin: 10px 0;
+    }
+    .car-details-section p, .inline-row {
+        margin-bottom: 10px;
+    }
+    .terms-box {
+        margin-top: 10px;
+        padding: 10px;
+    }
+    .signatures-section {
+        margin-top: 15px;
+    }
+    .signatures-row {
+        margin-top: 15px;
+    }
 }
