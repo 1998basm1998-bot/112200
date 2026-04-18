@@ -157,6 +157,11 @@ header {
     background: linear-gradient(to bottom, #2b2b2b, #000);
     color: #ffd700; padding: 15px; border-radius: 10px; margin-bottom: 20px;
 }
+.header-car-img {
+    width: 120px;
+    opacity: 0.6;
+    object-fit: contain;
+}
 .header-side { flex: 1; }
 .header-center { flex: 2; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .header-center h2 { color: #ffd700; font-size: 30px; text-shadow: 1px 1px 2px red; margin:0;}
@@ -239,6 +244,9 @@ header {
     .contract-header {
         margin-bottom: 10px;
         padding: 10px;
+    }
+    .header-car-img {
+        width: 80px;
     }
     .parties-section {
         margin-bottom: 10px;
