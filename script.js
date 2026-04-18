@@ -22,6 +22,7 @@ function openFormModal(transactionId = null) {
         const txn = transactions.find(t => t.id === transactionId);
         if(txn) {
             document.getElementById('transactionId').value = txn.id;
+            document.getElementById('ownerName').value = txn.ownerName || '';
             document.getElementById('sellerName').value = txn.sellerName;
             document.getElementById('sellerAddress').value = txn.sellerAddress;
             document.getElementById('sellerJob').value = txn.sellerJob;
@@ -69,6 +70,7 @@ function saveTransaction() {
 
     const newTxn = {
         id: idField ? parseInt(idField) : Date.now(),
+        ownerName: document.getElementById('ownerName').value,
         sellerName: sellerName,
         sellerAddress: document.getElementById('sellerAddress').value,
         sellerJob: document.getElementById('sellerJob').value,
