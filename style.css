@@ -165,20 +165,21 @@ header {
     color: #000;
 }
 .contract-header {
-    display: flex; justify-content: space-between; align-items: center;
-    background: linear-gradient(to bottom, #2b2b2b, #000);
+    display: flex; justify-content: space-between; align-items: stretch;
+    background: #000;
     color: #ffd700; padding: 15px; border-radius: 10px; margin-bottom: 20px;
 }
 .header-car-img {
-    width: 120px;
-    opacity: 0.6;
-    object-fit: contain;
+    width: 144px; /* 120px + 20% */
+    opacity: 1; /* removed opacity to hide background better */
+    object-fit: cover;
+    background: #000;
 }
-.header-side { flex: 1; }
-.header-center { flex: 2; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.header-side { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.header-center { flex: 2; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 10px 0; }
 .header-center h2 { color: #ffd700; font-size: 30px; text-shadow: 1px 1px 2px red; margin:0;}
 .header-center h3 { color: red; margin:0;}
-.header-center .subtitle { background: #ffd700; color: #000; border-radius: 15px; padding: 2px 10px; display: inline-block; font-weight: bold;}
+.header-center .subtitle { background: #ffd700; color: #000; border-radius: 15px; padding: 2px 10px; display: inline-block; font-weight: bold; margin-top: auto; }
 .header-side p { margin: 5px 0; color: white; font-weight: bold;}
 .text-left { text-align: left; color: red !important; }
 
@@ -258,7 +259,7 @@ header {
         padding: 10px;
     }
     .header-car-img {
-        width: 80px;
+        width: 96px; /* 80px + 20% */
     }
     .parties-section {
         margin-bottom: 10px;
